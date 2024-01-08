@@ -1,0 +1,40 @@
+
+.join_page{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.join-container{
+    border: 2px solid white;
+    width: 50vw; 
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} 
+.join-container h1{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+.join-container input{
+    outline: none;
+    padding: 10px;
+    margin: 10px 0;
+}
+.join-container button{
+    font-family: "Roboto";
+    font: bold;
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    border: none;
+}
+.join-container button:hover{
+    background-color: rgb(245, 33, 33);
+}

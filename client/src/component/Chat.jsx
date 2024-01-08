@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../Styles/chat.css"
 import {user} from "../component/Join"
 import socketIO from "socket.io-client"
-import Message from "./Message";
+
 
 let socket;
 const ENDPOINT = "http://localhost:4000";
@@ -61,9 +61,7 @@ const Chat = () => {
      <div className="chatPage">
         <div className="chatContainer">
             <div className="header"></div>
-            <div className="chatBox">
-                <Message></Message>
-            </div>
+            <div className="chatBox"></div>
             <div className="chatInput">
                 <input type="text" id="chatInput" />
                 <button onClick={send}>send</button>

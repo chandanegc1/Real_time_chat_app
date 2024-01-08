@@ -1,0 +1,25 @@
+{
+  "name": "real_time_chat_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chandanegc1/Real_time_chat_app.git"
+  },
+  "author": "chandan kanaujiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chandanegc1/Real_time_chat_app/issues"
+  },
+  "homepage": "https://github.com/chandanegc1/Real_time_chat_app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.7.3"
+  }
+}

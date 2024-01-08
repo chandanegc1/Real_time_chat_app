@@ -17,7 +17,6 @@ const Chat = () => {
         document.getElementById("chatInput").value = "";
     }
     
-    console.log(user)
     useEffect(()=>{
         socket = socketIO(ENDPOINT , {transports:["websocket"]});
 
@@ -54,7 +53,6 @@ const Chat = () => {
 
         }
     })
-
 
   return (
     <>

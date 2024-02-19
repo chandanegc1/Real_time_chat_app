@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import "../Styles/chat.css"
 import {user} from "../component/Join"
 import socketIO from "socket.io-client"
-
+import Message from "./Message";
+import ReactScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
 const ENDPOINT = "http://localhost:4000";
 
 const Chat = () => {
     const [id , setid] = useState("");
+    const [message , setmessage] = useState([]);
 
 
     const send = ()=>{
@@ -17,25 +19,28 @@ const Chat = () => {
         document.getElementById("chatInput").value = "";
     }
     
+
+
     useEffect(()=>{
         socket = socketIO(ENDPOINT , {transports:["websocket"]});
-
         socket.on('connect' , ()=>{
-            alert("socket is connected..");
             setid(socket.id);
         })
 
-        socket.emit('joined' , {user})              //emit means send the data
+        socket.emit('joined' , {user});              //emit means send the data
 
         socket.on('welcome' , (data)=>{
+            setmessage([...message ,data]);
             console.log(data.user , data.message);
         })
            
         socket.on('userJoined' , (data)=>{
+            setmessage([...message ,data]);
             console.log(data.user , data.message);
         })
 
         socket.on('leave',(data)=>{
+            setmessage([...message ,data]);
             console.log(data.user , data.message);
         })
 
@@ -47,19 +52,22 @@ const Chat = () => {
 
     useEffect(()=>{
         socket.on("sendmessage" , (data)=>{
+            setmessage([...message ,data]);
              console.log(data.id , data.message );
         })
         return ()=>{
-
+            socket.off();
         }
-    })
+    },[message])
 
   return (
     <>
      <div className="chatPage">
         <div className="chatContainer">
             <div className="header"></div>
-            <div className="chatBox"></div>
+            <ReactScrollToBottom className="chatBox">
+                {message.map(item => <Message message={item.message} user={item.id===id ?"":item.user} classs={item.id===id ? "right":"left"} />)}
+            </ReactScrollToBottom>
             <div className="chatInput">
                 <input type="text" id="chatInput" />
                 <button onClick={send}>send</button>

@@ -22,6 +22,9 @@
 .chatContainer .chatBox{
     border: 2px solid;
     height: 74%;
+    /* overflow-y: auto; */
+    /* display: flex;
+    flex-direction: column; */
 }
 .chatInput{
     display: flex;
@@ -40,4 +43,7 @@
 }
 .chatInput button:active{
     background-color: rgb(26, 231, 11);
+}
+.chatBox{
+
 }

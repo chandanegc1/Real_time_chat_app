@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import "../Styles/join.css"
+import { useState } from "react";
+import "../Styles/Join.css"
 import { Link } from "react-router-dom"
 
 let user;
-
-
 
 const sendUser = ()=>{
     user = document.getElementById("joinInput").value;
@@ -23,6 +21,5 @@ const Join = () => {
     </div>
   )
 }
-
 export default Join
 export {user}

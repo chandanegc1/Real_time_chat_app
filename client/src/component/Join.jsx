@@ -1,5 +1,5 @@
-import { useState } from "react";
-import "../Styles/Join.css"
+import React, { useState } from "react";
+import "../Styles/join.css"
 import { Link } from "react-router-dom"
 
 let user;

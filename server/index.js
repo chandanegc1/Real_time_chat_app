@@ -5,13 +5,9 @@ const socketIo= require("socket.io");
 
 const app = express();
 const port = 4000 || process.env.PORT
+app.use(cors());       //cors is used for intercommunicate between url
 
 const users=[{}];
-
-app.use(cors());       //cors is used for intercommunicate between url
-app.get("/" ,(req ,res)=>{
-    res.send("backend server running....");
-})
 
 const server = http.createServer(app);
 const io = socketIo(server);
@@ -21,7 +17,7 @@ io.on('connection' , (socket)=>{
          users[socket.id] = user;         //on means receive the data
          console.log(user , "is joined..");
          socket.broadcast.emit('userJoined',{user:"Admin",message:` ${users[socket.id]} has joined`});
-         socket.emit('welcome',{user:"Admin",message:`Welcome to the chat,${users[socket.id]} `})
+         socket.emit('welcome',{user:"Admin",message:` Welcome to the chat ${users[socket.id]} `})
      })
    
      socket.on('message' , ({message ,id})=>{

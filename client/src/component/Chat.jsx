@@ -5,12 +5,16 @@ import socketIO from "socket.io-client";
 import Message from "./Message";
 import ReactScrollToBottom from "react-scroll-to-bottom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 
+export const action = async()=>{
+  document.getElementById("chatInput").value = "";
+  return null;
+}
 
 let socket;
-const ENDPOINT = "https://chat-app-backend-5.onrender.com";
-// const ENDPOINT = "http://localhost:4000/";
+// const ENDPOINT = "https://rbcijuzxxn.ap-south-1.awsapprunner.com/";
+const ENDPOINT = "http://localhost:4000/";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -19,8 +23,10 @@ const Chat = () => {
   const [message, setmessage] = useState([]);
   const send = () => {
     const message = document.getElementById("chatInput").value;
+    if(message==="")
+       return null;
     socket.emit("message", { message, id });
-    document.getElementById("chatInput").value = "";
+    
   };
   useEffect(() => {
     socket = socketIO(ENDPOINT, { transports: ["websocket"] });
@@ -42,7 +48,8 @@ const Chat = () => {
 
     socket.on("leave", (data) => {
       setmessage([...message, data]);
-      toast.success(data.user, data.message);
+      socket.emit("message", { message, id });
+      toast.success(data.user);
     });
 
     return () => {
@@ -73,12 +80,11 @@ const Chat = () => {
               />
             ))}
           </ReactScrollToBottom>
-          <div className="chatInput">
+          <Form method="post" className="chatInput">
             <input type="text" id="chatInput" />
             <button onClick={send}>send</button>
-          </div>
+          </Form>
         </div>
-        
       </div>
     </>
   );

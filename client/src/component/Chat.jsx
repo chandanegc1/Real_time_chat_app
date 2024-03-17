@@ -13,8 +13,8 @@ export const action = async()=>{
 }
 
 let socket;
-// const ENDPOINT = "https://rbcijuzxxn.ap-south-1.awsapprunner.com/";
-const ENDPOINT = "http://localhost:4000/";
+const ENDPOINT = "https://rm7jmktydk.eu-west-3.awsapprunner.com/";
+// const ENDPOINT = "http://localhost:4000/";
 
 const Chat = () => {
   const navigate = useNavigate();

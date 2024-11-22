@@ -52,6 +52,7 @@
     color: rgb(0, 0, 0);
     background-color: rgb(37, 177, 168);
     font-weight: bold;
+    cursor: pointer;
 }
 .chatInput button:active{
     background-color: rgb(43, 120, 134);

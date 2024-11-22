@@ -7,26 +7,24 @@ import ReactScrollToBottom from "react-scroll-to-bottom";
 import { toast } from "react-toastify";
 import { Form, useNavigate } from "react-router-dom";
 
-export const action = async()=>{
+export const action = async () => {
   document.getElementById("chatInput").value = "";
   return null;
-}
+};
 
 let socket;
 // const ENDPOINT = "https://rm7jmktydk.eu-west-3.awsapprunner.com/";
-const ENDPOINT = "http://localhost:4000/";
+const ENDPOINT = "https://chat-egc.up.railway.app/";
 
 const Chat = () => {
   const navigate = useNavigate();
-  let i=0;
+  let i = 0;
   const [id, setid] = useState("");
   const [message, setmessage] = useState([]);
   const send = () => {
     const message = document.getElementById("chatInput").value;
-    if(message==="")
-       return null;
+    if (message === "") return null;
     socket.emit("message", { message, id });
-    
   };
   useEffect(() => {
     socket = socketIO(ENDPOINT, { transports: ["websocket"] });
@@ -70,7 +68,9 @@ const Chat = () => {
       <div className="chatContainer">
         <div className="page">
           <ReactScrollToBottom className="chatBox">
-          <div className="header"><h3> {user} </h3></div>
+            <div className="header">
+              <h3> {user} </h3>
+            </div>
             {message.map((item) => (
               <Message
                 key={item.message}
